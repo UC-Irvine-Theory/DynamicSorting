@@ -75,7 +75,7 @@ public:
         real.assign(n , Element());
         aprox.assign(n, Element());
 
-        for(unsigned int i = 0; i < n; ++i)
+        for(int i = 0; i < n; ++i)
         {
             real[i].ptr               = &aprox[startConfig[i]];
             aprox[startConfig[i]].ptr = &real[i];
@@ -103,8 +103,6 @@ public:
                hotSpotMovement();
        }
 
-       //std::cout << "\tComparing " << i << " and " << j << " ";
-       //std::cout << "Vals: " << aprox[i].ptr - aprox[j].ptr << "\n";
        return aprox[i].ptr < aprox[j].ptr;
     }
 
@@ -136,7 +134,7 @@ public:
     {
         std::cout << "Inversions: " << totalInversions() << std::endl;
         std::cout << "i Real/Aprox\n";
-        for(unsigned int i = 0; i < n; ++i)
+        for(int i = 0; i < n; ++i)
         {
             std::cout << i  << " " <<
             (real[i].ptr  - &aprox[0])   << "/" << 
@@ -242,7 +240,7 @@ public:
         unsigned long leftInvs = mergeSortInversions(left);
         unsigned long rightInvs = mergeSortInversions(right);
         unsigned long invsBetween = 0;
-        int i = 0, j = 0, k = 0;
+        unsigned int i = 0, j = 0, k = 0;
         while(i < left.size() and j < right.size())
         {
             if(aprox[left[i]].ptr < aprox[right[j]].ptr)

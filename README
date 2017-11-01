@@ -1,1 +1,40 @@
 Instructions: Run make to compile the program, and then run ./Sort to see how the program should be used.
+
+To compile:
+Run make
+
+To do a single: 
+
+Running ./Sort will give you the available options which are:
+./Sort n sortAlg swapType numSwaps initialSeed startConfig sampleRate timeLimit [filename]
+
+For example:
+./Sort 1000 BUBBLE RANDOM 1 0 SORTED 100 10000
+
+Or see runExample.sh
+
+--------------------------------------------------------------------------------------------------------
+
+Doing Experiments and plotting:
+
+For experiments it is convenient to run more than a single run so you have to use a script
+
+1) compile: 
+make
+
+2) make a directory results: 
+mkdir ./results
+
+3) Run the example script: 
+sh ./runExample.sh
+
+4) Run smartPlot.py (use python 2.7): 
+python smartPlot.py results
+
+5) Choose what options you want to display. Examples:
+
+100 BUBBLE SHUFFLE RANDOM 1
+
+200 INSERTION SORTED-SHUFFLE RANDOM 1-2
+
+100 * SHUFFLE * 1

@@ -6,13 +6,22 @@ import matplotlib.pyplot as plt
 
 from aggregateResult import loadData, getPlots, plotInversions
 
+if len(sys.argv) != 2:
+    print "Too few or too many arguments, only put the directory of the results"
+    sys.exit()
+
 path = sys.argv[1]
 
 print "Loading..."
 results = loadData(path)
 
 print "Ready!\n"
+print "Input your options at the prompt."
+print "\tFor a single option put the name eg: BUBBLE"
+print "\tFor a subset separate by -       eg: INSERTION-QUICK"
+print "\tFor all the options put *        eg: *"
 while True:
+
     line = raw_input("Input what you want to plot 'n ,alg ,startConfig ,swapType ,numSwaps' or q to quit\n")
 
     if line == "q":
