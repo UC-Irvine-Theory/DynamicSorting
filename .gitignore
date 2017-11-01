@@ -1,3 +1,4 @@
 Sort
 results/
 *.o
+*.pyc
