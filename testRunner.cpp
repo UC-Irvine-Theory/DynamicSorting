@@ -30,10 +30,10 @@ std::unordered_map<std::string, EvolvingList::SwapType> swapTypes =
 void printUsage()
 {
     std::cout << "USAGE: <n> <alg> "
-              << "<swap type> <swap rate>"
-              << "<seed> <initialConfig>  "
-              << "<sampleRate> <timiLimit> "
-              << "[outputFile] [dist]" << std::endl;
+              << "<swap type> <swap rate> "
+              << "<seed> <initialConfig> "
+              << "<sampleRate> <timeLimit> "
+              << "[outputFile]" << std::endl;
     std::cout << "Where:" << std::endl;
     std::cout << "\tn: int > 0" << std::endl;
 
@@ -49,7 +49,7 @@ void printUsage()
 
     std::cout << "\tswap rate: int > 0" << std::endl;
 
-    std::cout << "\tseed  : int > 0" << std::endl;
+    std::cout << "\tseed  : int >= 0" << std::endl;
     
 
     std::cout << "\tinitialConfig   : is one of {";
@@ -68,7 +68,7 @@ Stats runTest(std::vector<unsigned int> const& startConfig,
               const unsigned seed)
 {
     EvolvingList values(startConfig, sampleRate, swapType, swapRate, seed);
-    std::cout << "Inversions: " << values.getInversions() << std::endl;
+    std::cout << "Initial Inversions: " << values.getInversions() << std::endl;
 
     alg(values,timeLimit);
 
