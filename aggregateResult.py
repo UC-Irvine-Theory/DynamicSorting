@@ -14,6 +14,7 @@ colors = {'QUICK': 'cyan', 'BLOCKQUICK': 'blue', 'BUBBLE':'red', 'COCKTAIL' : 'g
 def loadData(path):
 #COCKTAIL-1000-REVERSE-HOTSPOT-16-14.out
     raw = {}
+    options = { "n":set(), "alg":set(), "startConfig":set(), "swapType":set(), "numSwaps":set()}
     for f in listdir(path):
         if not f.endswith(".out"):
             continue
@@ -21,6 +22,9 @@ def loadData(path):
         name,ext = os.path.splitext(basename)
 
         alg,size,config,swapType,numSwaps,seed = string.split(name, '-')
+
+        options["n"].add(size); options["alg"].add(alg); options["startConfig"].add(config)
+        options["swapType"].add(swapType); options["numSwaps"].add(numSwaps)
 
         if not size in raw:
             raw[size] = {}
@@ -59,9 +63,19 @@ def loadData(path):
                         np.divide(sum, n)
                         results[size][algName][configName][swapTypeName][numSwapsName] = sum; 
 
-    return results
+    return results, options
 
-#params == [n, alg, startConfig, swapType, numSwaps], use * for selecting any
+def printOptions(options):
+    outOrder = ["n", "alg", "startConfig", "swapType", "numSwaps"]
+    for oName in outOrder:
+        print oName + "\t",
+        if len(oName) < 8:
+            print "\t",
+        for val in options[oName]:
+            print val + " ",
+        print ""
+
+#params == [n, alg, startConfig, swapType, numSwaps], use * for selecting any, - for subsets
 def getPlots(values, result, params, prefix):
     if len(params) == 0:
         values.append( (prefix, result) )
