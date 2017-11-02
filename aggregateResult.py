@@ -1,13 +1,10 @@
-import string
-
+import collections
 from os import listdir
 import os.path 
+import string
 
-import collections
-
-import numpy as np
 import matplotlib.pyplot as plt
-
+import numpy as np
 
 colors = {'QUICK': 'cyan', 'BLOCKQUICK': 'blue', 'BUBBLE':'red', 'COCKTAIL' : 'green', 'INSERTION': 'magenta'}
 
@@ -37,8 +34,6 @@ def loadData(path):
         if not numSwaps in raw[size][alg][config][swapType]:
             raw[size][alg][config][swapType][numSwaps] = {}
             if not seed in raw[size][alg][config][swapType][numSwaps]:
-                #maxRows = int(size) * 10
-                #raw[size][alg][config][swapType][numSwaps][seed] = np.genfromtxt(path+f, delimiter=",", max_rows=maxRows)
                 raw[size][alg][config][swapType][numSwaps][seed] = np.genfromtxt(path+f, delimiter=",")
 
 #size -> alg -> config
@@ -102,6 +97,3 @@ def plotInversions(plots,x=3,y=0):
     colormap = plt.get_cmap('prism')
     ax.set_color_cycle([colormap(k) for k in np.linspace(0, 1, 20)])
     plt.show()
-
-
-

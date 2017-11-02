@@ -26,7 +26,6 @@ while True:
 
     line = raw_input("Input what you want to plot '<n> <alg> <startConfig> <swapType> <numSwaps>' or q to quit\n")
 
-
     if line == "q":
         break
 
@@ -53,4 +52,3 @@ while True:
 
     plt.title(line)
     plotInversions(plots)
-
