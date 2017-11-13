@@ -33,7 +33,7 @@ mkdir ./results
 sh ./runExample.sh
 
 4) Run smartPlot.py (use python 2.7): 
-python smartPlot.py results
+python smartPlot.py results/
 
 5) Choose what options you want to display. Examples:
 
