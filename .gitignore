@@ -2,3 +2,4 @@ Sort
 results/
 *.o
 *.pyc
+.*.swp
