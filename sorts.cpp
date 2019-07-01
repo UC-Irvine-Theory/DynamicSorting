@@ -1,10 +1,13 @@
-#include <random>
+#include <functional>
 #include <iostream>
-#include <unordered_map>
-#include <stack>
 #include <math.h>
+#include <random>
+#include <unordered_map>
 
-void repeatedInsertionSort(EvolvingList& list, long time_limit)
+#include "sorts.h"
+
+void 
+repeatedInsertionSort(EvolvingList& list, long time_limit)
 {
   int n = list.size();
   while(list.getTime() < time_limit)
@@ -115,18 +118,6 @@ void repeatedQuicksort(EvolvingList& list, long timeLimit)
   while(list.getTime() < timeLimit)
     quicksort(list,n);
 }
-
-struct QSortState
-{
-  int low,high,i,j;
-  QSortState(int l, int h)
-  {
-    low = l;
-    high = h;
-    i = low-1;
-    j = low;
-  }
-};
 
 void startNewQuicksortCall(std::vector<int>& toSort, std::stack<QSortState>& callStack, int low, int high)
 {

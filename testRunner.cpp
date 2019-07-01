@@ -4,9 +4,9 @@
 #include <string>
 #include <unordered_map>
 
-#include "evolvingList.h"
 #include "initialConfiguration.h"
-#include "sorts.cpp"
+#include "evolvingList.h"
+#include "sorts.h"
 
 using Stats = EvolvingList::Stats;
 
