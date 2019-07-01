@@ -1,8 +1,15 @@
-sort: InitialConfig.o 
-	g++ -std=c++11 -Wall -O3 testRunner.cpp evolvingList.cpp initialConfiguration.o -o Sort
+FLAGS := -std=c++17 -Wall -Wpedantic -Wextra -O3
 
-InitialConfig.o:
-	g++ -std=c++11 -Wall -O3 -c initialConfiguration.cpp
+all: Sort
 
-printConfig:
-	g++ -std=c++11 -Wall -O3 initialConfiguration.cpp printConfigurations.cpp -o PrintConfigs
+Sort: testRunner.cpp evolvingList.cpp initialConfiguration.o 
+	g++ $(FLAGS) testRunner.cpp evolvingList.cpp initialConfiguration.o -o Sort
+
+initialConfiguration.o: initialConfiguration.cpp
+	g++ $(FLAGS) -c initialConfiguration.cpp
+
+PrintConfig: initialConfiguration.cpp printConfigurations.cpp
+	g++ $(FLAGS) initialConfiguration.cpp printConfigurations.cpp -o PrintConfigs
+
+clean:
+	rm -f Sort initialConfiguration.o PrintConfigs
