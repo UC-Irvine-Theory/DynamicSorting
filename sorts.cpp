@@ -128,7 +128,7 @@ struct QSortState
   }
 };
 
-void startNewQuicksortCall(EvolvingList& list, std::vector<int>& toSort, std::stack<QSortState>& callStack, int low, int high)
+void startNewQuicksortCall(std::vector<int>& toSort, std::stack<QSortState>& callStack, int low, int high)
 {
   if(low < high)
   { 
@@ -179,8 +179,8 @@ bool stackQuicksortRunStep(EvolvingList& list, std::vector<int>&toSort, std::sta
       int highLeft = i;
       int lowRight = i+2;
       int highRight = high;     
-      startNewQuicksortCall(list,toSort,callStack,lowLeft,highLeft);
-      startNewQuicksortCall(list,toSort,callStack,lowRight,highRight);
+      startNewQuicksortCall(toSort,callStack,lowLeft,highLeft);
+      startNewQuicksortCall(toSort,callStack,lowRight,highRight);
     }
   }
   return true;
@@ -195,7 +195,7 @@ void stackQuicksort(EvolvingList& list, int timeLimit)
     std::vector<int> toSort(n);
     for(int i = 0; i < n; i++)
       toSort[i] = i;
-    startNewQuicksortCall(list,toSort,callStack,0,n-1);
+    startNewQuicksortCall(toSort,callStack,0,n-1);
     while(stackQuicksortRunStep(list,toSort,callStack)); 
     list.permuteAnswer(toSort);
   }
@@ -229,7 +229,7 @@ void blockedQuicksort(EvolvingList& list, int timeLimit)
   for(int i = 0; i < n; i++)
     toFullSort[i] = i;
   //Begin with a normal quicksort run
-  startNewQuicksortCall(list,toFullSort,fullStack,0,n-1);
+  startNewQuicksortCall(toFullSort,fullStack,0,n-1);
   while(stackQuicksortRunStep(list,toFullSort,fullStack)); 
   list.permuteAnswer(toFullSort);
   
@@ -242,7 +242,7 @@ void blockedQuicksort(EvolvingList& list, int timeLimit)
   }
   bool newFullAnswer = false;
 
-  startNewQuicksortCall(list,toFullSort,fullStack,0,n-1);
+  startNewQuicksortCall(toFullSort,fullStack,0,n-1);
   std::stack<QSortState> blockStack;
 
   while(list.getTime() < timeLimit)
@@ -268,7 +268,7 @@ void blockedQuicksort(EvolvingList& list, int timeLimit)
         toBlockSort[m/2 + j] = lastFullAnswer[i*m/2 + j];
       }
 
-      startNewQuicksortCall(list,toBlockSort,blockStack,0,m-1);
+      startNewQuicksortCall(toBlockSort,blockStack,0,m-1);
       while(stackQuicksortRunStep(list,toBlockSort,blockStack))
       {
         bool fullQuickSortFinished = not stackQuicksortRunStep(list,toFullSort,fullStack);
@@ -276,7 +276,7 @@ void blockedQuicksort(EvolvingList& list, int timeLimit)
         {
           newFullAnswer = true;
           nextFullAnswer = toFullSort;
-          startNewQuicksortCall(list,toFullSort,fullStack,0,n-1);
+          startNewQuicksortCall(toFullSort,fullStack,0,n-1);
         }
       }
 

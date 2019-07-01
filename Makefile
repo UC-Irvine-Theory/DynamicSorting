@@ -2,7 +2,7 @@ FLAGS := -std=c++17 -Wall -Wpedantic -Wextra -O3
 
 all: Sort
 
-Sort: testRunner.cpp evolvingList.cpp initialConfiguration.o 
+Sort: testRunner.cpp evolvingList.cpp initialConfiguration.o
 	g++ $(FLAGS) testRunner.cpp evolvingList.cpp initialConfiguration.o -o Sort
 
 initialConfiguration.o: initialConfiguration.cpp
