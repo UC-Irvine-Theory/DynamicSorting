@@ -4,9 +4,10 @@
 #include <string>
 #include <unordered_map>
 
-#include "evolvingList.cpp"
+#include "evolvingList.h"
 #include "initialConfiguration.h"
 #include "sorts.cpp"
+
 using Stats = EvolvingList::Stats;
 
 std::unordered_map<std::string, std::function<void(EvolvingList&,long)> > sortingAlgorithms =
@@ -23,8 +24,8 @@ std::unordered_map<std::string, std::function<void(EvolvingList&,long)> > sortin
 
 std::unordered_map<std::string, EvolvingList::SwapType> swapTypes =
 {
-    {"RANDOM", EvolvingList::RANDOMSWAP},
-    {"HOTSPOT", EvolvingList::HOTSPOT},
+    {"RANDOM", EvolvingList::SwapType::RANDOMSWAP},
+    {"HOTSPOT", EvolvingList::SwapType::HOTSPOT},
 };
 
 void printUsage()
